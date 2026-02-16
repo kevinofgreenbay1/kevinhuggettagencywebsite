@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kevin Huggett Agency — Locally owned insurance agency in Oconto, WI. Auto, home, flood, life, business, and farm coverage. Licensed in WI, MI & IL. 20+ years protecting families.">
+<title>Kevin Huggett Agency | Insurance That Protects Your Family | Oconto, WI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0C2340;--navy-mid:#132E4F;--blue:#1A5F94;--blue-bright:#3498DB;
+  --accent:#2E8B57;--accent-light:#3CB371;--accent-glow:rgba(46,139,87,0.12);
+  --gold:#D4A843;--warm:#F8F5F0;--cream:#FDFCF9;--white:#fff;
+  --slate:#4A5568;--light-slate:#718096;--border:#E8E4DE;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 2px 8px rgba(12,35,64,0.05);
+  --shadow-md:0 8px 30px rgba(12,35,64,0.08);
+  --shadow-lg:0 16px 50px rgba(12,35,64,0.12);
+  --shadow-xl:0 24px 70px rgba(12,35,64,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;color:#2D3748;line-height:1.6;background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3,h4,.serif{font-family:'Fraunces',serif;}
+img{max-width:100%;display:block;}
+::selection{background:var(--accent);color:#fff;}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue-bright),var(--accent));z-index:200;width:0%;transition:width 0.1s;}
+
+/* ===== CURSOR GLOW (desktop) ===== */
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(46,139,87,0.04),transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left 0.3s ease-out,top 0.3s ease-out;display:none;}
+@media(min-width:769px){.cursor-glow{display:block;}}
+
+/* ===== REVEAL SYSTEM ===== */
+.r{opacity:0;transform:translateY(50px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.r.v{opacity:1;transform:translateY(0);}
+.rl{opacity:0;transform:translateX(-60px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.rl.v{opacity:1;transform:translateX(0);}
+.rr{opacity:0;transform:translateX(60px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.rr.v{opacity:1;transform:translateX(0);}
+.rs{opacity:0;transform:scale(0.85);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.rs.v{opacity:1;transform:scale(1);}
+.d1{transition-delay:.1s}.d2{transition-delay:.15s}.d3{transition-delay:.2s}.d4{transition-delay:.25s}
+.d5{transition-delay:.3s}.d6{transition-delay:.35s}.d7{transition-delay:.4s}.d8{transition-delay:.45s}.d9{transition-delay:.5s}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0);backdrop-filter:blur(0px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);}
+.nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);box-shadow:0 1px 30px rgba(12,35,64,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:76px;}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces',serif;font-weight:800;font-size:18px;box-shadow:0 4px 15px rgba(12,35,64,0.2);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
+.nav-brand:hover .nav-mark{transform:rotate(-8deg) scale(1.1);box-shadow:0 6px 20px rgba(12,35,64,0.3);}
+.nav-brand-text .brand-name{font-family:'Fraunces',serif;font-weight:800;font-size:17px;color:var(--navy);}
+.nav-brand-text .brand-sub{font-size:11px;color:var(--light-slate);font-weight:400;}
+.nav-links{display:flex;gap:2px;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--slate);font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.25s;position:relative;overflow:hidden;}
+.nav-links a::before{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--accent);transition:all 0.3s;transform:translateX(-50%);}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a:hover::before{width:60%;}
+.nav-cta{display:flex;align-items:center;gap:10px;}
+.nav-phone{font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;padding:8px 16px;border-radius:var(--radius-sm);transition:all 0.3s;}
+.nav-phone:hover{color:var(--accent);}
+.nav-btn{font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;padding:10px 20px;border-radius:var(--radius-sm);border:none;cursor:pointer;text-decoration:none;background:var(--accent);color:#fff;transition:all 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow:0 2px 10px rgba(46,139,87,0.25);}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(46,139,87,0.35);}
+.mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--navy);}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 32px 80px;position:relative;overflow:hidden;background:linear-gradient(160deg,#FDFCF9 0%,#F0EDE6 40%,#E8F0E8 100%);}
+#hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:72px;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:24px;background:rgba(46,139,87,0.08);backdrop-filter:blur(4px);border:1px solid rgba(46,139,87,0.12);color:var(--accent);font-size:13px;font-weight:600;margin-bottom:20px;animation:heroFade 0.8s ease-out 0.2s both;}
+.hero-badge .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);position:relative;}
+.hero-badge .pulse-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--accent);animation:ping 2s cubic-bezier(0,0,0.2,1) infinite;}
+@keyframes ping{75%,100%{transform:scale(2);opacity:0}}
+@keyframes heroFade{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroScale{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+.hero h1{font-size:58px;font-weight:900;color:var(--navy);line-height:1.08;letter-spacing:-2px;margin-bottom:20px;animation:heroUp 0.8s ease-out 0.35s both;}
+.hero h1 .highlight{position:relative;display:inline-block;}
+.hero h1 .highlight::after{content:'';position:absolute;bottom:6px;left:-4px;right:-4px;height:10px;background:linear-gradient(90deg,rgba(46,139,87,0.15),rgba(26,95,148,0.1));border-radius:4px;z-index:-1;animation:highlightGrow 0.6s ease-out 1s both;}
+@keyframes highlightGrow{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+.hero h1 .typed-cursor{font-weight:300;color:var(--accent);animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{font-size:18px;color:var(--slate);line-height:1.75;margin-bottom:32px;max-width:520px;font-weight:400;animation:heroUp 0.8s ease-out 0.5s both;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;animation:heroUp 0.8s ease-out 0.6s both;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;padding:15px 30px;border-radius:12px;border:none;cursor:pointer;text-decoration:none;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity 0.3s;}
+.btn:hover::after{opacity:1;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#25A55A);color:#fff;box-shadow:0 6px 20px rgba(46,139,87,0.3);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(46,139,87,0.35);}
+.btn-primary:active{transform:translateY(-1px);}
+.btn-secondary{background:var(--white);color:var(--navy);border:1.5px solid var(--border);box-shadow:var(--shadow-sm);}
+.btn-secondary:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.hero-stats{display:flex;gap:40px;animation:heroUp 0.8s ease-out 0.7s both;}
+.hero-stat{position:relative;}
+.hero-stat::after{content:'';position:absolute;right:-20px;top:10%;height:80%;width:1px;background:var(--border);}
+.hero-stat:last-child::after{display:none;}
+.hero-stat .num{font-family:'Fraunces',serif;font-size:38px;font-weight:900;color:var(--navy);letter-spacing:-1px;line-height:1.1;}
+.hero-stat .label{font-size:12px;color:var(--light-slate);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.hero-visual{position:relative;animation:heroScale 0.9s ease-out 0.4s both;}
+.hero-img-wrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-xl);border:4px solid rgba(255,255,255,0.8);}
+.hero-img-wrap img{width:100%;aspect-ratio:4/3.5;object-fit:cover;transition:transform 8s cubic-bezier(0.16,1,0.3,1);}
+.hero-img-wrap:hover img{transform:scale(1.06);}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(12,35,64,0.15));pointer-events:none;}
+.hero-float-card{position:absolute;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,0.8);}
+.hero-float-card.badge-card{bottom:-12px;left:20px;display:flex;align-items:center;gap:10px;animation:heroUp 0.7s ease-out 0.9s both;}
+.hero-float-card .stars{color:var(--gold);font-size:17px;letter-spacing:2px;}
+.hero-float-card .badge-info{font-size:14px;font-weight:700;color:var(--navy);}
+.hero-float-card .badge-info span{display:block;font-weight:400;color:var(--light-slate);font-size:12px;}
+.hero-float-card.shield-card{top:20px;right:-12px;display:flex;align-items:center;gap:8px;animation:heroUp 0.7s ease-out 1.1s both;}
+.shield-icon{font-size:22px;}
+.shield-text{font-size:12px;font-weight:700;color:var(--navy);line-height:1.3;}
+.shield-text span{display:block;font-weight:500;color:var(--accent);font-size:11px;}
+
+/* ===== MARQUEE TRUST ===== */
+.trust-marquee{padding:20px 0;background:var(--white);border-bottom:1px solid var(--border);overflow:hidden;position:relative;}
+.trust-marquee::before,.trust-marquee::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;}
+.trust-marquee::before{left:0;background:linear-gradient(90deg,#fff,transparent);}
+.trust-marquee::after{right:0;background:linear-gradient(-90deg,#fff,transparent);}
+.marquee-track{display:flex;gap:48px;animation:marquee 30s linear infinite;width:max-content;}
+.marquee-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--slate);font-weight:500;white-space:nowrap;}
+.marquee-item .mi{font-size:18px;}
+.marquee-divider{color:var(--border);font-size:18px;}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== SECTIONS ===== */
+.section{padding:110px 32px;position:relative;}
+.section-warm{background:var(--warm);}
+.section-cream{background:var(--cream);}
+.section-dark{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 40%,#183D5C 100%);color:#fff;position:relative;overflow:hidden;}
+.section-dark::before{content:'';position:absolute;top:-30%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(46,139,87,0.06),transparent 60%);pointer-events:none;}
+.section-dark::after{content:'';position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(26,95,148,0.05),transparent 60%);pointer-events:none;}
+.sh{text-align:center;margin-bottom:60px;}
+.sh .overline{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:12px;display:block;}
+.sh h2{font-size:44px;font-weight:900;color:var(--navy);letter-spacing:-1px;margin-bottom:10px;line-height:1.1;}
+.section-dark .sh h2{color:#fff;}
+.sh p{font-size:16px;color:var(--light-slate);max-width:520px;margin:0 auto;line-height:1.6;}
+.section-dark .sh p{color:rgba(255,255,255,0.55);}
+.container{max-width:1200px;margin:0 auto;}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:center;}
+.about-img{position:relative;}
+.about-img-frame{border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg);position:relative;}
+.about-img-frame img{width:100%;aspect-ratio:3/3.5;object-fit:cover;transition:transform 6s cubic-bezier(0.16,1,0.3,1);}
+.about-img-frame:hover img{transform:scale(1.05);}
+.about-img-accent{position:absolute;bottom:-16px;right:-16px;width:120px;height:120px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--blue));opacity:0.12;z-index:-1;}
+.about-img-accent2{position:absolute;top:-12px;left:-12px;width:80px;height:80px;border-radius:12px;border:3px solid var(--accent);opacity:0.1;z-index:-1;}
+.about-text .overline{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:12px;display:block;}
+.about-text h2{font-size:38px;color:var(--navy);margin-bottom:20px;letter-spacing:-0.5px;text-align:left;font-weight:800;line-height:1.15;}
+.about-text p{font-size:15px;color:var(--slate);line-height:1.8;margin-bottom:16px;}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:24px;}
+.value{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:500;color:var(--navy);padding:10px 14px;border-radius:var(--radius-sm);transition:all 0.3s;cursor:default;}
+.value:hover{background:var(--accent-glow);transform:translateX(4px);}
+.value .vi{font-size:20px;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);}
+.value:hover .vi{transform:scale(1.25) rotate(-10deg);}
+
+/* ===== SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.svc{padding:32px 26px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);transition:all 0.45s cubic-bezier(0.16,1,0.3,1);cursor:default;position:relative;overflow:hidden;}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--blue-bright));transform:scaleX(0);transform-origin:left;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);}
+.svc:hover::before{transform:scaleX(1);}
+.svc::after{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle,var(--accent-glow),transparent 70%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.svc:hover::after{opacity:1;}
+.svc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.svc-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:18px;background:var(--warm);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
+.svc:hover .svc-icon{background:var(--accent-glow);transform:scale(1.1) rotate(-5deg);}
+.svc h3{font-size:18px;color:var(--navy);margin-bottom:8px;font-weight:700;font-family:'Fraunces',serif;}
+.svc p{font-size:14px;color:var(--light-slate);line-height:1.65;}
+.brokerage{max-width:720px;margin:44px auto 0;padding:28px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(46,139,87,0.04),rgba(26,95,148,0.04));border:1px solid rgba(46,139,87,0.1);text-align:center;position:relative;}
+.brokerage::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:linear-gradient(var(--accent),var(--blue));}
+.brokerage h4{font-family:'Fraunces',serif;font-size:18px;color:var(--accent);margin-bottom:6px;font-weight:700;}
+.brokerage p{font-size:14px;color:var(--slate);line-height:1.65;}
+
+/* ===== TEAM ===== */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.tc{text-align:center;padding:32px 18px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);transition:all 0.45s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;}
+.tc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--blue-bright));transform:scaleX(0);transition:transform 0.4s;transform-origin:center;}
+.tc:hover::after{transform:scaleX(1);}
+.tc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.tc-avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 18px;overflow:hidden;box-shadow:0 6px 24px rgba(12,35,64,0.1);border:4px solid var(--white);outline:2px solid var(--border);transition:all 0.45s cubic-bezier(0.16,1,0.3,1);}
+.tc:hover .tc-avatar{transform:scale(1.1);box-shadow:0 10px 35px rgba(12,35,64,0.15);outline-color:var(--accent);}
+.tc-avatar img{width:100%;height:100%;object-fit:cover;}
+.tc-letter{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;font-family:'Fraunces',serif;font-weight:800;}
+.tc h3{font-size:18px;color:var(--navy);margin-bottom:3px;font-family:'Fraunces',serif;font-weight:700;}
+.tc .role{font-size:12px;color:var(--accent);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;}
+.tc p{font-size:13px;color:var(--light-slate);line-height:1.6;}
+
+/* ===== COMMUNITY ===== */
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cc{display:flex;gap:20px;padding:30px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);align-items:flex-start;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
+.cc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.cc .ci{font-size:40px;flex-shrink:0;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);}
+.cc:hover .ci{transform:scale(1.2) rotate(-8deg);}
+.cc h3{font-size:17px;color:var(--navy);margin-bottom:6px;font-family:'Fraunces',serif;font-weight:700;}
+.cc p{font-size:14px;color:var(--light-slate);line-height:1.65;}
+
+/* ===== REVIEWS ===== */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rev{padding:30px;border-radius:var(--radius);background:var(--white);border:1px solid var(--border);text-align:left;transition:all 0.4s;position:relative;overflow:hidden;}
+.rev::before{content:'"';position:absolute;top:12px;right:20px;font-family:'Fraunces',serif;font-size:80px;color:var(--accent);opacity:0.06;line-height:1;pointer-events:none;}
+.rev:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.rev .stars{color:var(--gold);font-size:16px;letter-spacing:2px;display:block;margin-bottom:14px;}
+.rev p{font-size:15px;color:var(--slate);line-height:1.7;margin-bottom:14px;font-style:italic;}
+.rev .author{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px;}
+.rev .author::before{content:'';width:16px;height:2px;background:var(--accent);border-radius:1px;}
+.reviews-cta{text-align:center;margin-top:36px;}
+
+/* ===== STATS SECTION ===== */
+.stats-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:72px;align-items:center;max-width:1060px;margin:0 auto;}
+.stats-text h2{font-size:40px;color:#fff;margin-bottom:20px;text-align:left;letter-spacing:-0.8px;font-weight:900;line-height:1.1;}
+.stats-text p{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;}
+.stats-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:36px;backdrop-filter:blur(8px);}
+.stat{padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.stat:last-child{border:none;padding-bottom:0;}
+.stat:first-child{padding-top:0;}
+.stat .sn{font-family:'Fraunces',serif;font-size:44px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;}
+.stat .sl{font-size:14px;color:rgba(255,255,255,0.45);font-weight:400;margin-top:4px;}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.contact-info h3{font-family:'Fraunces',serif;font-size:26px;color:var(--navy);margin-bottom:28px;font-weight:800;}
+.ci-item{display:flex;gap:14px;margin-bottom:20px;font-size:15px;color:var(--slate);transition:transform 0.2s;}
+.ci-item:hover{transform:translateX(4px);}
+.ci-item .icon{font-size:22px;flex-shrink:0;width:28px;text-align:center;}
+.ci-item strong{display:block;font-weight:700;color:var(--navy);margin-bottom:2px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;}
+.ci-item a{color:var(--blue);text-decoration:none;font-weight:600;transition:color 0.2s;}
+.ci-item a:hover{color:var(--accent);}
+.hours{margin-top:28px;padding:24px;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);}
+.hours h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px;}
+.hours-row{display:flex;justify-content:space-between;padding:10px 0;font-size:14px;color:var(--slate);border-bottom:1px solid var(--border);}
+.hours-row:last-child{border:none;}
+.hours-row .day{font-weight:600;color:var(--navy);}
+.cf{background:var(--white);padding:40px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-md);}
+.cf h3{font-family:'Fraunces',serif;font-size:26px;color:var(--navy);margin-bottom:28px;font-weight:800;}
+.fg{margin-bottom:16px;}
+.fg label{font-size:12px;font-weight:700;display:block;margin-bottom:6px;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;}
+.fi{width:100%;padding:13px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-size:14px;font-family:'Outfit',sans-serif;color:#2D3748;transition:all 0.3s;background:var(--white);}
+.fi:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-glow);}
+.fi::placeholder{color:#B0B8C4;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-note{font-size:12px;color:var(--light-slate);text-align:center;margin-top:14px;}
+
+/* ===== CTA ===== */
+.cta{background:linear-gradient(135deg,var(--navy) 0%,#183D6E 45%,var(--blue) 100%);padding:110px 32px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:-40%;right:-15%;width:800px;height:800px;background:radial-gradient(circle,rgba(46,139,87,0.08),transparent 55%);pointer-events:none;animation:ctaFloat 25s ease-in-out infinite;}
+.cta::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,0.02),transparent 55%);pointer-events:none;animation:ctaFloat 20s ease-in-out infinite reverse;}
+@keyframes ctaFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-40px)}}
+.cta h2{font-size:44px;color:#fff;margin-bottom:14px;letter-spacing:-1px;font-weight:900;}
+.cta p{font-size:17px;color:rgba(255,255,255,0.65);margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-white{background:#fff;color:var(--navy);padding:16px 34px;font-size:16px;box-shadow:0 6px 25px rgba(0,0,0,0.12);}
+.btn-white:hover{box-shadow:0 12px 40px rgba(0,0,0,0.18);transform:translateY(-4px);}
+.btn-outline{background:transparent;color:rgba(255,255,255,0.85);border:1.5px solid rgba(255,255,255,0.18);padding:16px 34px;font-size:16px;}
+.btn-outline:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.5);color:#fff;transform:translateY(-3px);}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--navy);color:rgba(255,255,255,0.5);padding:64px 32px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.footer h4{color:#fff;font-family:'Fraunces',serif;font-size:15px;font-weight:700;margin-bottom:18px;}
+.footer p{font-size:13px;line-height:1.75;}
+.footer a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;display:block;margin-bottom:10px;transition:all 0.25s;}
+.footer a:hover{color:#fff;transform:translateX(4px);}
+.footer-line{border:none;border-top:1px solid rgba(255,255,255,0.05);margin-bottom:24px;}
+.footer-bottom{text-align:center;font-size:12px;color:rgba(255,255,255,0.35);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none;}
+  .mobile-toggle{display:block;}
+  .hero{min-height:auto;padding:110px 20px 60px;}
+  .hero-inner{grid-template-columns:1fr;gap:36px;text-align:center;}
+  .hero h1{font-size:40px;letter-spacing:-1px;}
+  .hero-desc{margin:0 auto 28px;}
+  .hero-actions{justify-content:center;}
+  .hero-stats{justify-content:center;gap:28px;}
+  .hero-stat::after{display:none;}
+  .hero-visual{order:-1;}
+  .hero-img-wrap img{aspect-ratio:16/10;}
+  .hero-float-card.badge-card{left:50%;transform:translateX(-50%);bottom:-16px;}
+  .hero-float-card.shield-card{top:10px;right:10px;}
+  .section{padding:72px 20px;}
+  .sh h2{font-size:32px;}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  .services-grid,.reviews-grid,.team-grid,.comm-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr;gap:36px;}
+  .stats-text h2{text-align:center;}
+  .contact-grid{grid-template-columns:1fr;}
+  .cta{padding:72px 20px;}
+  .cta h2{font-size:32px;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-mark">KH</div>
+      <div class="nav-brand-text">
+        <div class="brand-name">Kevin Huggett Agency</div>
+        <div class="brand-sub">Protecting What Matters Since 2005</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#team">Team</a><a href="#community">Community</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:9208352303" class="nav-phone">📞 (920) 835-2303</a>
+      <a href="#contact" class="nav-btn">Free Review</a>
+    </div>
+    <button class="mobile-toggle" onclick="this.closest('.nav').querySelector('.nav-links').style.display=this.closest('.nav').querySelector('.nav-links').style.display==='flex'?'none':'flex'"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="pulse-dot"></span> Locally Owned · Oconto, WI</div>
+      <h1>Insurance That<br>Actually <span class="highlight">Protects</span><br>Your Family</h1>
+      <p class="hero-desc">We don't just sell policies. We sit down with you, review your full situation, find every discount, and make sure you're covered right — not oversold, not underinsured.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Schedule a Free Review →</a>
+        <a href="tel:9208352303" class="btn btn-secondary">Call (920) 835-2303</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="20" data-suffix="+">0</div><div class="label">Years Experience</div></div>
+        <div class="hero-stat"><div class="num" data-count="2000" data-suffix="+">0</div><div class="label">Families Protected</div></div>
+        <div class="hero-stat"><div class="num" data-count="3" data-suffix="">0</div><div class="label">States Licensed</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://edge.sitecorecloud.io/afmic-3e9239cf/media/project/amfam/public/agent-websites/agent-photos/9299124dba0a08502363b885093c8e6d/3cf45d6940bcebee66514a2f9ce38404/a70a7efe69cb42b38cae60cfa81b5c3d/bc4014f31a0840bb8559f25072abeb2a-crop.jpg?h=500&iar=0&w=500" alt="Kevin Huggett - Agency Owner">
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="hero-float-card badge-card">
+        <div><div class="stars">★★★★★</div><div class="badge-info">4.8 out of 5<span>84 reviews</span></div></div>
+      </div>
+      <div class="hero-float-card shield-card">
+        <div class="shield-icon">🛡️</div>
+        <div class="shield-text">Licensed<span>WI · MI · IL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST MARQUEE -->
+<div class="trust-marquee">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item"><span class="mi">🏆</span> 20+ Years in Business</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">👨‍👩‍👧‍👦</span> 2,000+ Families Helped</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">⭐</span> 4.8/5 Rating · 84 Reviews</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">📋</span> Licensed in WI, MI & IL</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">📍</span> Oconto, Wisconsin</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">🤝</span> No-Pressure Approach</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">🔍</span> Full Coverage Reviews</span><span class="marquee-divider">·</span>
+    <span class="marquee-item"><span class="mi">📞</span> A Real Person Answers</span><span class="marquee-divider">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img rl">
+        <div class="about-img-frame">
+          <img src="https://edge.sitecorecloud.io/afmic-3e9239cf/media/project/amfam/public/agent-websites/agent-photos/9299124dba0a08502363b885093c8e6d/3cf45d6940bcebee66514a2f9ce38404/a70a7efe69cb42b38cae60cfa81b5c3d/bc4014f31a0840bb8559f25072abeb2a-crop.jpg?h=600&iar=0&w=600" alt="Kevin Huggett">
+        </div>
+        <div class="about-img-accent"></div>
+        <div class="about-img-accent2"></div>
+      </div>
+      <div class="about-text rr">
+        <span class="overline">About the Agency</span>
+        <h2>Meet Kevin Huggett</h2>
+        <p>Since 2005, I've been helping families and businesses across Wisconsin, Michigan, and Illinois protect what matters most. I believe insurance should be straightforward — no jargon, no pressure, just honest answers and the right coverage.</p>
+        <p>My team and I specialize in personalized coverage reviews. We don't just match what you had before — we look at your full picture, find gaps, and make sure you're properly protected.</p>
+        <p>I'm also passionate about leveraging technology to enhance client service — making faster, more informed decisions so we can focus on protecting people's lives, businesses, and dreams.</p>
+        <div class="values-grid">
+          <div class="value"><span class="vi">🤝</span> Honest, no-pressure approach</div>
+          <div class="value"><span class="vi">🔍</span> Full coverage reviews</div>
+          <div class="value"><span class="vi">📞</span> Real person answers the phone</div>
+          <div class="value"><span class="vi">🏠</span> Locally owned & operated</div>
+          <div class="value"><span class="vi">📋</span> Licensed in WI, MI & IL</div>
+          <div class="value"><span class="vi">💡</span> Technology-forward service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-warm" id="services">
+  <div class="container">
+    <div class="sh r"><span class="overline">What We Do</span><h2>Coverage for Every<br>Part of Your Life</h2><p>From your car to your home to your business — we build the right protection around your full situation.</p></div>
+    <div class="services-grid">
+      <div class="svc r d1"><div class="svc-icon">🚗</div><h3>Auto Insurance</h3><p>Full coverage reviews with discount analysis for every driver in your household. We find savings most people miss.</p></div>
+      <div class="svc r d2"><div class="svc-icon">🏠</div><h3>Homeowners Insurance</h3><p>Protect your biggest investment. We review rebuild costs, liability, and the coverage gaps most agents overlook.</p></div>
+      <div class="svc r d3"><div class="svc-icon">🌊</div><h3>Flood Insurance</h3><p>Your homeowners won't cover floods. We compare NFIP and private carriers through our brokerage to find your best rate.</p></div>
+      <div class="svc r d4"><div class="svc-icon">❤️</div><h3>Life Insurance</h3><p>Affordable protection for the people who depend on you. Term and permanent options starting under $20/month.</p></div>
+      <div class="svc r d5"><div class="svc-icon">💼</div><h3>Business Insurance</h3><p>General liability, property, workers comp, commercial auto, and specialty coverage for businesses of all sizes.</p></div>
+      <div class="svc r d6"><div class="svc-icon">🌾</div><h3>Farm & Ranch</h3><p>Specialized coverage for agricultural operations — equipment, livestock, outbuildings, and liability.</p></div>
+      <div class="svc r d7"><div class="svc-icon">☂️</div><h3>Umbrella Policies</h3><p>Extra liability protection over your auto and home. One of the most affordable ways to protect your assets.</p></div>
+      <div class="svc r d8"><div class="svc-icon">🏍️</div><h3>Recreational Vehicles</h3><p>Motorcycles, boats, ATVs, snowmobiles, RVs, and campers — covered the right way.</p></div>
+      <div class="svc r d9"><div class="svc-icon">📦</div><h3>Bundling</h3><p>Auto + home + more for maximum savings. We stack every available discount into one package for your family.</p></div>
+    </div>
+    <div class="brokerage r"><h4>🌊 Flood & Specialty Coverage</h4><p>Through our brokerage department, we write flood insurance through multiple carriers including NFIP and private flood markets. We also access specialty markets for hard-to-place risks.</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="sh r"><span class="overline">Our Team</span><h2>Real People Who<br>Know Your Name</h2><p>When you call, a real person answers. Someone who knows your policy picks up the phone.</p></div>
+    <div class="team-grid">
+      <div class="tc r d1">
+        <div class="tc-avatar"><img src="https://edge.sitecorecloud.io/afmic-3e9239cf/media/project/amfam/public/agent-websites/agent-photos/9299124dba0a08502363b885093c8e6d/3cf45d6940bcebee66514a2f9ce38404/a70a7efe69cb42b38cae60cfa81b5c3d/bc4014f31a0840bb8559f25072abeb2a-crop.jpg?h=200&iar=0&w=200" alt="Kevin Huggett"></div>
+        <h3>Kevin Huggett</h3><div class="role">Agency Owner</div>
+        <p>20+ years experience. Flood, life, commercial, and full household reviews. Technology-forward service.</p>
+      </div>
+      <div class="tc r d2">
+        <div class="tc-avatar"><img src="https://edge.sitecorecloud.io/afmic-3e9239cf/media/project/amfam/public/agent-websites/agent-photos/9299124dba0a08502363b885093c8e6d/3cf45d6940bcebee66514a2f9ce38404/a70a7efe69cb42b38cae60cfa81b5c3d/beautyplus_20220225104058566_save.jpeg?h=200&iar=0&w=200" alt="Brittney Dequaine"></div>
+        <h3>Brittney Dequaine</h3><div class="role">Sales Specialist</div>
+        <p>Helps new clients find the right coverage. Known for energy, follow-through, and clear communication.</p>
+      </div>
+      <div class="tc r d3">
+        <div class="tc-avatar"><img src="https://edge.sitecorecloud.io/afmic-3e9239cf/media/project/amfam/public/agent-websites/agent-photos/9299124dba0a08502363b885093c8e6d/65ee54e3055c604ecaceb2055e680945/a70a7efe69cb42b38cae60cfa81b5c3d/amypicpng.png?h=200&iar=0&w=200" alt="Amy Huggett"></div>
+        <h3>Amy Huggett</h3><div class="role">Retention Specialist</div>
+        <p>Proactive policy reviews, renewal optimization, and cross-sell analysis. Keeps clients properly covered.</p>
+      </div>
+      <div class="tc r d4">
+        <div class="tc-avatar"><div class="tc-letter" style="background:linear-gradient(135deg,#7B2D8B,#9B59B6)">M</div></div>
+        <h3>Morgan Saari</h3><div class="role">Operations & Support</div>
+        <p>Communications, pre-renewal prep, claim follow-ups, and coordination. Keeps the agency running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="section section-cream" id="community">
+  <div class="container">
+    <div class="sh r"><span class="overline">In Our Community</span><h2>More Than an<br>Insurance Agency</h2><p>Insurance is our business. Our community is our purpose.</p></div>
+    <div class="comm-grid">
+      <div class="cc r d1"><div class="ci">🎒</div><div><h3>School Supply Drive</h3><p>Co-founded by Amy and Brittney, this nonprofit supports local students with essential school supplies every fall.</p></div></div>
+      <div class="cc r d2"><div class="ci">🏘️</div><div><h3>Northeast WI Roots</h3><p>Based in Oconto, we're part of the community we serve. Our clients are our neighbors.</p></div></div>
+      <div class="cc r d3"><div class="ci">🤝</div><div><h3>Local Business Support</h3><p>We insure dozens of local businesses — from Main Street shops to family farms.</p></div></div>
+      <div class="cc r d4"><div class="ci">📖</div><div><h3>Insurance Education</h3><p>Educational content to help families make informed decisions — not just buy the cheapest policy.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="sh r"><span class="overline">Client Reviews</span><h2>What Our Clients Say</h2><p>4.8 stars from 84 reviews</p></div>
+    <div class="reviews-grid">
+      <div class="rev r d1"><span class="stars">★★★★★</span><p>"Kevin is a good, intelligent, honest, hard-working agent with his clients' best interest always in mind."</p><div class="author">Google Review</div></div>
+      <div class="rev r d2"><span class="stars">★★★★★</span><p>"They took the time to review everything and found coverage gaps I didn't know I had. Saved money AND got better protection."</p><div class="author">Google Review</div></div>
+      <div class="rev r d3"><span class="stars">★★★★★</span><p>"You can actually reach a real person when you call. That alone makes them worth it. The savings on our bundle was a bonus."</p><div class="author">Google Review</div></div>
+    </div>
+    <div class="reviews-cta r"><a href="#" class="btn btn-secondary">Read All 84 Reviews on Google →</a></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stats-text rl">
+        <h2>Why Work With a Local Agent?</h2>
+        <p>Online quote sites give you a number in 2 minutes. We give you a coverage review that protects your family for years.</p>
+        <p>We look at your whole situation — auto, home, flood, life, umbrella — and connect the dots. We find discounts. We spot gaps. And when you call, a real person picks up.</p>
+        <p>Through our brokerage, we compare rates from multiple flood and specialty carriers where it matters most.</p>
+      </div>
+      <div class="stats-card rr">
+        <div class="stat"><div class="sn" data-count="20" data-suffix="+">0</div><div class="sl">Years protecting families</div></div>
+        <div class="stat"><div class="sn" data-count="2000" data-suffix="+">0</div><div class="sl">Families & businesses served</div></div>
+        <div class="stat"><div class="sn">4.8★</div><div class="sl">Google rating (84 reviews)</div></div>
+        <div class="stat"><div class="sn" data-count="3" data-suffix="">0</div><div class="sl">States licensed (WI, MI, IL)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-warm" id="contact">
+  <div class="container">
+    <div class="sh r"><span class="overline">Contact</span><h2>Get in Touch</h2><p>We'd love to hear from you</p></div>
+    <div class="contact-grid">
+      <div class="contact-info rl">
+        <h3>Oconto Office</h3>
+        <div class="ci-item"><span class="icon">📍</span><div><strong>Address</strong>215 Main St, Oconto, WI 54153</div></div>
+        <div class="ci-item"><span class="icon">📞</span><div><strong>Phone</strong><a href="tel:9208352303">(920) 835-2303</a></div></div>
+        <div class="ci-item"><span class="icon">📧</span><div><strong>Email</strong>kevin@kevinhuggettagency.com</div></div>
+        <div class="hours">
+          <h4>Office Hours</h4>
+          <div class="hours-row"><span class="day">Monday – Thursday</span><span>8:30 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span>8:30 AM – 4:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday – Sunday</span><span>Closed (by appointment)</span></div>
+        </div>
+      </div>
+      <div class="cf rr">
+        <h3>Send Us a Message</h3>
+        <div class="form-row"><div class="fg"><label>First Name</label><input class="fi" placeholder="John"></div><div class="fg"><label>Last Name</label><input class="fi" placeholder="Smith"></div></div>
+        <div class="fg"><label>Email</label><input class="fi" type="email" placeholder="john@email.com"></div>
+        <div class="fg"><label>Phone</label><input class="fi" type="tel" placeholder="(555) 234-5678"></div>
+        <div class="fg"><label>How Can We Help?</label><select class="fi"><option>I'd like a coverage review</option><option>I need a quote on new coverage</option><option>I have a question about my policy</option><option>I need to file a claim</option><option>Other</option></select></div>
+        <div class="fg"><label>Message</label><textarea class="fi" rows="3" placeholder="Tell us a little about what you need..." style="resize:vertical"></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:16px;">Send Message →</button>
+        <div class="form-note">We typically respond within 1 business day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="r">
+    <h2>Ready for a Free<br>Coverage Review?</h2>
+    <p>No obligation. No pressure. Just an honest look at whether you're properly protected.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn btn-white">Schedule a Free Review →</a>
+      <a href="tel:9208352303" class="btn btn-outline">Call (920) 835-2303</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <h4>Kevin Huggett Agency</h4>
+        <p>Protecting families and businesses across Wisconsin, Michigan, and Illinois since 2005. Locally owned and operated in Oconto, WI.</p>
+        <p style="margin-top:14px">📍 215 Main St, Oconto, WI 54153<br>📞 (920) 835-2303<br>📧 kevin@kevinhuggettagency.com</p>
+      </div>
+      <div><h4>Insurance</h4><a href="#services">Auto</a><a href="#services">Home</a><a href="#services">Flood</a><a href="#services">Life</a><a href="#services">Business</a><a href="#services">Farm & Ranch</a><a href="#services">Umbrella</a></div>
+      <div><h4>Company</h4><a href="#about">About Us</a><a href="#team">Our Team</a><a href="#reviews">Reviews</a><a href="#community">Community</a><a href="#contact">Contact</a></div>
+      <div><h4>Quick Links</h4><a href="#contact">Schedule a Review</a><a href="tel:9208352303">Call Us</a><a href="#">File a Claim</a><a href="#">Make a Payment</a><a href="#">Privacy Policy</a></div>
+    </div>
+    <hr class="footer-line">
+    <div class="footer-bottom">© 2026 Kevin Huggett Agency Inc. All rights reserved. Licensed in Wisconsin, Michigan, and Illinois. Flood and specialty coverage written through our brokerage department.</div>
+  </div>
+</footer>
+
+<script>
+// ===== SCROLL PROGRESS =====
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('scrollProgress').style.width=pct+'%';
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+});
+
+// ===== CURSOR GLOW =====
+document.addEventListener('mousemove',e=>{
+  const g=document.getElementById('cursorGlow');
+  g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';
+});
+
+// ===== SCROLL REVEAL =====
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:0.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.r,.rl,.rr,.rs').forEach(el=>io.observe(el));
+
+// ===== ANIMATED COUNTERS =====
+function countUp(el,target,suffix){
+  const dur=2200,start=performance.now();
+  const go=now=>{
+    const p=Math.min((now-start)/dur,1);
+    const e=1-Math.pow(1-p,4);
+    el.textContent=Math.floor(e*target).toLocaleString()+suffix;
+    if(p<1)requestAnimationFrame(go);
+  };requestAnimationFrame(go);
+}
+const cio=new IntersectionObserver(es=>{es.forEach(e=>{
+  if(e.isIntersecting&&!e.target.dataset.done){
+    e.target.dataset.done='1';
+    countUp(e.target,+e.target.dataset.count,e.target.dataset.suffix||'+');
+  }
+});},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// ===== HERO PARTICLE CANVAS =====
+(function(){
+  const c=document.getElementById('hero-canvas'),ctx=c.getContext('2d');
+  let w,h,particles=[];
+  function resize(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  for(let i=0;i<40;i++){
+    particles.push({
+      x:Math.random()*w,y:Math.random()*h,
+      vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,
+      r:Math.random()*2+0.5,
+      o:Math.random()*0.15+0.03
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=w;if(p.x>w)p.x=0;
+      if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(46,139,87,${p.o})`;ctx.fill();
+    });
+    // draw connections
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<150){
+          ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle=`rgba(46,139,87,${0.03*(1-dist/150)})`;
+          ctx.lineWidth=0.5;ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ===== DUPLICATE MARQUEE FOR SEAMLESS LOOP =====
+const mq=document.getElementById('marquee');
+mq.innerHTML+=mq.innerHTML;
+
+// ===== SMOOTH ANCHOR SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
